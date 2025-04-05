@@ -28,4 +28,5 @@ Route::group(['prefix' => '/tasks', 'middleware' => ['auth']], function() {
 	Route::post('/edit/{id}', [TaskController::class, 'update']);
 
 	Route::post('/delete', [TaskController::class, 'delete']);
+	Route::post('/order-priority', [TaskController::class, 'orderPriority']);
 });

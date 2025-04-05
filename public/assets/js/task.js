@@ -1,6 +1,45 @@
 'use strict'
 
 $(document).ready(function () {
+  $('#task-table').tableDnD({
+    onDragClass: "drag-row",
+    onDrop: function(table, row) {
+        var rows = $('#task-table tbody tr');
+        var debugStr = "Row dropped was "+row.id+".";
+        let newOrder = [];
+        
+        for (var i=0; i<rows.length; i++) {
+          // debugStr += $(rows[i]).attr('id')+" ";
+          let taskID = $(rows[i]).data('taskid');
+          newOrder.push(taskID)
+        }
+
+        $(table).parent().find('.result').text(debugStr);
+
+        $.ajax({
+          beforeSend: function (xhr) {
+            xhr.setRequestHeader("X-CSRF-TOKEN", $('meta[name="csrf-token"]').attr('content'));
+          },
+          url: BASE_URL + '/tasks/order-priority',
+          type: 'post',
+          data: {
+            'ordering': newOrder
+          },
+          complete: function () {
+            
+          },
+          success: function (res) {
+            
+          },
+          error: function (err) {
+            
+          }
+        });
+    },
+		onDragStart: function(table, row) {
+			$(table).parent().find('.result').text("Started dragging row "+row.id);
+		}
+  });
   $('#btn-add-task').on('click', function (e) {
     e.preventDefault();
 

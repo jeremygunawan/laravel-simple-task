@@ -17,7 +17,7 @@ class TaskController extends Controller
      */
     public function index()
     {
-        $tasks = Task::where('user_id', Auth::id())->get();
+        $tasks = Task::where('user_id', Auth::id())->orderBy('priority', 'ASC')->get();
         $projects = Project::where('user_id', Auth::id())->get();
 
         return view('tasks.index', [
@@ -30,7 +30,7 @@ class TaskController extends Controller
      * store using ajax
      *
      * @param  mixed $request
-     * @return RedirectResponse
+     * @return json
      */
     public function store(Request $request)
     {
@@ -85,7 +85,7 @@ class TaskController extends Controller
      * update
      *
      * @param  mixed $request
-     * @return RedirectResponse
+     * @return json
      */
     public function update(Request $request, $id)
     {
@@ -119,7 +119,7 @@ class TaskController extends Controller
      * delete
      *
      * @param  mixed $request
-     * @return RedirectResponse
+     * @return json
      */
     public function delete(Request $request)
     {
@@ -129,6 +129,38 @@ class TaskController extends Controller
         return response()->json([
             'code' => '200',
             'message' => 'Task Deleted',
+            'data' => []
+        ], 200);
+    }
+
+    /**
+     * order priority
+     *
+     * @param  mixed $request
+     * @return json
+     */
+    public function orderPriority(Request $request)
+    {
+        $ordering = $request->ordering;
+        $project = [];
+        
+        //update Task
+        foreach($ordering as $single){
+            $task = Task::where('id', $single)->first();
+            $priority = 1;
+            if(!empty($project[$task->project_id])){
+                $priority = $project[$task->project_id] + 1;
+                $project[$task->project_id]++;
+            }else{
+                $project[$task->project_id] = 1;
+            }
+            $task->priority = $priority;
+            $task->save();
+        }
+
+        return response()->json([
+            'code' => '200',
+            'message' => 'Task Updated',
             'data' => []
         ], 200);
     }
