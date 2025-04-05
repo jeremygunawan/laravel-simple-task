@@ -10,8 +10,8 @@ This is simple application created using Laravel 12. This application has a func
 
 2. After extracted or pulled the application
 3. Open terminal on extracted folder
-4. Run command "composer install"
-5. After finish, run command "php artisan migrate:seed"
-6. since this application using vite please run "npm install"
-7. for run the application use command "composer run dev"
+4. Run command ```composer install```
+5. After finish, run command ```php artisan migrate:seed```
+6. since this application using vite please run ```npm install```
+7. for run the application use command ```composer run dev```
 8. Finish.
