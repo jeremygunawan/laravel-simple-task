@@ -11,6 +11,7 @@
                         <thead>
                             <tr>
                                 <th scope="col">PROJECT NAME</th>
+                                <th scope="col">TOTAL TASKS</th>
                                 <th scope="col">CREATED AT</th>
                                 <th scope="col">#</th>
                             </tr>
@@ -20,6 +21,9 @@
                             <tr>
                                 <td class="text-center">
                                     {{ $project->name }}
+                                </td>
+                                <td class="text-center">
+                                    {{ $project->getTotalTasks() }}
                                 </td>
                                 <td>{{ \Carbon\Carbon::parse($project->created_at)->diffForHumans() }}</td>
                                 <td>

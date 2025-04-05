@@ -27,6 +27,16 @@ class Project extends Model
      */
     public function tasks()
     {
-        return $this->hasMany(\App\Models\User::class, 'project_id', 'id');
+        return $this->hasMany(\App\Models\Task::class, 'project_id', 'id');
+    }
+
+    /**
+     * get total tasks
+     *
+     * @return Collection
+     */
+    public function getTotalTasks()
+    {
+        return sizeof($this->tasks);
     }
 }
