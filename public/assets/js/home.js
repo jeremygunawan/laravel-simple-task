@@ -41,9 +41,11 @@ $(document).ready(function () {
                 ${ single.name }
             </td>
             <td class="text-center">
-                
+                ${ single.project_name }
             </td>
-            <td></td>
+            <td>
+                ${ single.created_date }
+            </td>
         </tr>`;
         }
         
