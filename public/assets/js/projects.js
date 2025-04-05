@@ -1,6 +1,5 @@
 'use strict'
 
-
 $(document).ready(function () {
   $('.btn-delete').on('click', function(e){
     e.preventDefault();

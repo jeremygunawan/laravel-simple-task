@@ -6,11 +6,11 @@
         <div class="col-md-12">
             <div class="card border-0 shadow-sm rounded">
                 <div class="card-body">
-                    <a href="/projects/create" class="btn btn-md btn-success mb-3">ADD PRODUCT</a>
+                    <a href="/projects/create" class="btn btn-md btn-success mb-3">ADD PROJECT</a>
                     <table class="table table-bordered">
                         <thead>
                             <tr>
-                                <th scope="col">NAME</th>
+                                <th scope="col">PROJECT NAME</th>
                                 <th scope="col">CREATED AT</th>
                                 <th scope="col">#</th>
                             </tr>

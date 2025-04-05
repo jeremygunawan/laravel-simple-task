@@ -19,4 +19,14 @@ class Project extends Model
     {
         return $this->hasOne(\App\Models\User::class, 'user_id', 'id');
     }
+
+    /**
+     * tasks relationship
+     *
+     * @return Collection
+     */
+    public function tasks()
+    {
+        return $this->hasMany(\App\Models\User::class, 'project_id', 'id');
+    }
 }

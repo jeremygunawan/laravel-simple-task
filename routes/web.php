@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Web\ProjectController;
+use App\Http\Controllers\Web\TaskController;
 
 Auth::routes();
 
@@ -16,4 +17,15 @@ Route::group(['prefix' => '/projects', 'middleware' => ['auth']], function() {
 	Route::post('/edit/{id}', [ProjectController::class, 'update']);
 
 	Route::post('/delete', [ProjectController::class, 'delete']);
+});
+
+Route::group(['prefix' => '/tasks', 'middleware' => ['auth']], function() {
+	Route::get('/', [TaskController::class, 'index'])->name('projects.index');
+	
+	Route::post('/create', [TaskController::class, 'store']);
+
+	Route::get('/load/{id}', [TaskController::class, 'load']);
+	Route::post('/edit/{id}', [TaskController::class, 'update']);
+
+	Route::post('/delete', [TaskController::class, 'delete']);
 });

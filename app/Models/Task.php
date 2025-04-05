@@ -19,4 +19,24 @@ class Task extends Model
     {
         return $this->hasOne(\App\Models\User::class, 'user_id', 'id');
     }
+
+    /**
+     * project relationship
+     *
+     * @return Collection
+     */
+    public function project()
+    {
+        return $this->hasOne(\App\Models\Project::class, 'id', 'project_id');
+    }
+
+    /**
+     * project relationship
+     *
+     * @return Collection
+     */
+    public function getProjectName()
+    {
+        return $this->project->name;
+    }
 }
