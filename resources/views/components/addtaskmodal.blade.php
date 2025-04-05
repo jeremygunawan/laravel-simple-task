@@ -17,7 +17,7 @@
 
           <div class="form-group">
             <label for="contract-employee-name">Name</label>
-            <select name="project" id="project-dropdown" class="form-control">
+            <select name="project" id="project-dropdown" class="form-select">
               @foreach($projects as $project)
               <option value="{{ $project->id }}">{{ $project->name }}</option>
               @endforeach

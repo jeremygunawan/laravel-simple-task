@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Project;
+use App\Models\Task;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -23,6 +26,13 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        
+        $tasks = Task::where('user_id', Auth::id())->orderBy('priority', 'ASC')->get();
+        $projects = Project::where('user_id', Auth::id())->get();
+
+        return view('home', [
+            'tasks' => $tasks,
+            'projects' => $projects
+        ]);
     }
 }

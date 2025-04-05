@@ -164,4 +164,28 @@ class TaskController extends Controller
             'data' => []
         ], 200);
     }
+
+    /**
+     * Load data By Project
+     *
+     * @return json
+     */
+    public function loadByProject($id)
+    {
+        //to reduce DB call
+        if($id == 0){
+            $tasks = Task::where('user_id', Auth::id())->orderBy('priority', 'ASC')->get();       
+        }else{
+            $tasks = Task::where('user_id', Auth::id())->where('project_id', $id)->orderBy('priority', 'ASC')->get();
+        }
+        
+        $data = [];
+        $data['tasks'] = $tasks;
+
+        return response()->json([
+            'code' => '200',
+            'message' => 'Task Loaded',
+            'data' => $data
+        ], 200);
+    }
 }

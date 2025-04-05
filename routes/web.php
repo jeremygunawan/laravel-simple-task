@@ -29,4 +29,6 @@ Route::group(['prefix' => '/tasks', 'middleware' => ['auth']], function() {
 
 	Route::post('/delete', [TaskController::class, 'delete']);
 	Route::post('/order-priority', [TaskController::class, 'orderPriority']);
+
+	Route::get('/load-project/{id}', [TaskController::class, 'loadByProject']);
 });
