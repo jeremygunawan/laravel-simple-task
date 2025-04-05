@@ -15,6 +15,15 @@
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+
+    <link href="{{ asset('assets/thirdparty/fontawesome/css/all.css') }}" rel="stylesheet" />
+    <link href="{{ asset('assets/thirdparty/toast/jquery.toast.min.css') }}" rel="stylesheet" />
+    
+    @yield('header-styles')
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    @yield('header-script')
 </head>
 <body>
     <div id="app">
@@ -49,6 +58,16 @@
                                 </li>
                             @endif
                         @else
+                            <li class="nav-item">
+                                <a id="" class="nav-link" href="/projects">
+                                    {{ __('home.projects') }}
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a id="" class="nav-link" href="/tasks">
+                                    {{ __('home.tasks') }}
+                                </a>
+                            </li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
@@ -76,5 +95,8 @@
             @yield('content')
         </main>
     </div>
+
+    <script src="{{ asset('assets/thirdparty/toast/jquery.toast.min.js') }}"></script>
+    @yield('footer-script')
 </body>
 </html>
