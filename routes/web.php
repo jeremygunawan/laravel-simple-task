@@ -20,7 +20,7 @@ Route::group(['prefix' => '/projects', 'middleware' => ['auth']], function() {
 });
 
 Route::group(['prefix' => '/tasks', 'middleware' => ['auth']], function() {
-	Route::get('/', [TaskController::class, 'index'])->name('projects.index');
+	Route::get('/', [TaskController::class, 'index']);
 	
 	Route::post('/create', [TaskController::class, 'store']);
 
